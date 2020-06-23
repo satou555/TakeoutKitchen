@@ -11,11 +11,11 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
         /*データベース接続*/
         try{
             $dsn="mysql:dbname=DB_NAME;host=DB_HOST;charset=utf8";
-            $pdo= new PDO($dsn,DB_USER,DB_PASS);
-            $pdo->setAttribude(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT); /*エラー出力*/
+            $pdo= new PDO($dsn,"DB_USER","DB_PASS");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT); /*エラー出力*/
         }catch(PDOException $e){
             $_SESSION['register_message']='データベース接続に失敗しました';
-            header("Location:".$_SERVSR["PHP_SELF"]);
+            header("Location:".$_SERVER["PHP_SELF"]);
             exit;
         }
 
@@ -25,12 +25,12 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
         $stmt->execute();
         if(count($stmt->fetchAll())){
             $_SESSION["register_message"]="このユーザーネームはすでに使われています";
-            header("Location:".$SERVER["PHP_SELF"]);
+            header("Location:".$_SERVER["PHP_SELF"]);
             exit;
         }
 
         /*データ挿入*/
-        $stmt=$pdo->prepare("INSERT INTO users (username,useremail,password) VALUE(?,?,?)");
+        $stmt=$pdo->prepare("INSERT INTO users (username,email,password) VALUE(?,?,?)");
         $stmt->bindValue(1,$_POST["username"]);
         $stmt->bindValue(2,$_POST["useremail"]);
         $stmt->bindValue(3,$_POST["password"]);
@@ -82,6 +82,9 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             </div>
             <div class="panel_body">
                 <form action="" method="post">
+                    <?php
+                        echo($_SESSION["resister_message"]);
+                    ?>
                     <div class="form_content">
                         <p>お名前<br></p>
                         <input class="form_input" type="text" name="username">
