@@ -19,7 +19,7 @@ if(isset($_session["username"])){
 <body>
     <h1>会員登録が完了しました</h1>
 
-    <a href="/">トップに戻る</a>
+    <a href="front_page.html">トップに戻る</a>
     
 </body>
 </html>

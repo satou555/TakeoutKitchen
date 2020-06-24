@@ -10,8 +10,8 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
     if(isset($_POST["username"],$_POST["password"],$_POST["useremail"]) && $_POST["username"]!=="" && $_POST["password"]!=="" && $_POST["useremail"]!==""){
         /*データベース接続*/
         try{
-            $dsn="mysql:dbname=DB_NAME;host=DB_HOST;charset=utf8";
-            $pdo= new PDO($dsn,"DB_USER","DB_PASS");
+            $dsn="mysql:dbname=".DB_NAME.";host=".DB_HOST.";charset=utf8";
+            $pdo= new PDO($dsn,DB_USER,DB_PASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT); /*エラー出力*/
         }catch(PDOException $e){
             $_SESSION['register_message']='データベース接続に失敗しました';
@@ -61,14 +61,14 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 <div class="header">
         <div class="header_wrap">
             <div class="header_logo">
-                <a class="header_logoBtn" href="/">Takeout Kitchen</a>
+                <a class="header_logoBtn" href="front_page.php">Takeout Kitchen</a>
             </div>
             <div class="header_menberBtn">
                 <div class="header_menberBtnItem">
-                    <a class="header_menberBtnLink" href="" rel="nofollow">新規登録</a>
+                    <a class="header_menberBtnLink" href="<?php header("Location:".$_SERVER["PHP_SELF"]); ?>" rel="nofollow">新規登録</a>
                 </div>
                 <div class="header_menberBtnItem">
-                    <a class="header_menberLoginLink" href="" rel="nofollow">ログイン</a>
+                    <a class="header_menberLoginLink" href="index_loginTakeoutKitchen.php" rel="nofollow">ログイン</a>
                 </div>
             </div>
         </div>
