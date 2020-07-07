@@ -43,7 +43,7 @@
     <div class="logout_user">
         <?php
             if(isset($_SESSION["username"])){
-                echo "<a href=".index_logoutTakeoutKitchen.php.">ログアウト</a>";
+                echo "<a href="."index_logoutTakeoutKitchen.php".">ログアウト</a>";
             }
         ?>
     </div>
