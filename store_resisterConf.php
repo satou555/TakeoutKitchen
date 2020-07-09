@@ -31,10 +31,11 @@ $menuprice9=$_POST["menuprice9"];
 $menuprice10=$_POST["menuprice10"];
 
 $menunames=array($menuname1,$menuname2,$menuname3,$menuname4,$menuname5,
-                $menuname6,$menuname7,$menuname8,$menuname9,$menuname10);
+$menuname6,$menuname7,$menuname8,$menuname9,$menuname10);
 
 $menuprices=array($menuprice1,$menuprice2,$menuprice3,$menuprice4,$menuprice5,
-                $menuprice6,$menuprice7,$menuprice8,$menuprice9,$menuprice10);                
+$menuprice6,$menuprice7,$menuprice8,$menuprice9,$menuprice10); 
+
 
 /*登録するボタンを押したら情報をデータベースに登録する*/
 if(isset($_POST["submit_"])){
@@ -52,19 +53,42 @@ if(isset($_POST["submit_"])){
     $stmt->execute();
 
     $stmt=$pdo->prepare("INSERT INTO menu (product,price) VALUE(?,?)");
-    foreach($menunames as $menuname){
-        $stmt->bindValue(1,$menuname);
-    }
-    foreach($menuprices as $menuprice){
-        $stmt->bindValue(2,$menuprice);
-    }
+    $stmt->bindValue(1,$_POST["menuname1"]);
+    $stmt->bindValue(2,$_POST["menuprice1"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname2"]);
+    $stmt->bindValue(2,$_POST["menuprice2"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname3"]);
+    $stmt->bindValue(2,$_POST["menuprice3"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname4"]);
+    $stmt->bindValue(2,$_POST["menuprice4"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname5"]);
+    $stmt->bindValue(2,$_POST["menuprice5"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname6"]);
+    $stmt->bindValue(2,$_POST["menuprice6"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname7"]);
+    $stmt->bindValue(2,$_POST["menuprice7"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname8"]);
+    $stmt->bindValue(2,$_POST["menuprice8"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname9"]);
+    $stmt->bindValue(2,$_POST["menuprice9"]);
+    $stmt->execute();
+    $stmt->bindValue(1,$_POST["menuname10"]);
+    $stmt->bindValue(2,$_POST["menuprice10"]);
     $stmt->execute();
     
-
     header("Location:storeresister_success.php");
     exit;
 }
 ?>
+
 
 <!doctype html>
 <html>
