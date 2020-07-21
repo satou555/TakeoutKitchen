@@ -7,6 +7,15 @@ $storename=$_POST["storename"];
 $storeaddress=$_POST["storeaddress"];
 $storetel=$_POST["storetel"];
 $storeemail=$_POST["storeemail"];
+$opentime=$_POST["opentime"];
+$closed=$_POST["closed"];
+
+$temsave='/images';
+$tmpimage=uniqid().'csv';
+move_uploaded_file($_FILES["image"]["tmp_name"],$temsave);
+
+$img = file_get_contents($_FILES["image"]["tmp_name"]);
+$base64 = base64_encode($img);
 
 $menuname1=$_POST["menuname1"];
 $menuname2=$_POST["menuname2"];
@@ -45,20 +54,21 @@ if(isset($_POST["submit_"])){
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
        
     /*データ挿入*/
-    $stmt=$pdo->prepare("INSERT INTO kitchens (storename,addres,tel,mail) VALUE(?,?,?,?)");
+    $stmt=$pdo->prepare("INSERT INTO kitchens (storename,addres,tel,mail,opentime,closed) VALUE(?,?,?,?,?,?)");
     $stmt->bindValue(1,$_POST["storename"]);
     $stmt->bindValue(2,$_POST["storeaddress"]);
     $stmt->bindValue(3,$_POST["storetel"]);
     $stmt->bindValue(4,$_POST["storeemail"]);
+    $stmt->bindValue(5,$_POST["opentime"]);
+    $stmt->bindValue(6,$_POST["closed"]);
     $res = $stmt->execute();
-    $query = "SELECT id FROM kitchens WHERE storename = ?";
-    // $query = "SELECT * FROM kitchens";
-    // $result = $pdo->query($query);
-    $stmt = $pdo->prepare($query);
-    $stmt->bindValue(1, $_POST["storename"]);
-    $stmt->execute();
-    $stmt->bindResult($id);
-    $stmt->fetch();
+
+    /*データベースから店舗情報を取得*/
+    $stmt2=$pdo->prepare("SELECT id FROM kitchens WHERE storename='$storename'");
+    $stmt2->execute();
+    $result=$stmt2->fetchAll();
+    $row=$result[0];
+    $id=$row[id];
 
     $stmt=$pdo->prepare("INSERT INTO menu (product,price, kitchensId) VALUE(?,?,?)");
     $stmt->bindValue(1,$_POST["menuname1"]);
@@ -113,74 +123,96 @@ if(isset($_POST["submit_"])){
 <head>
     <meta charset="utf-8">
     <title>登録内容確認</title>
+    <link rel="stylesheet" href="store_resisterConf.css">
 </head>
 <body>
-    <div>
+    <div class="title_">
         <h1>店舗情報　登録内容確認</h1>
     </div>
     <div>
         <p>よろしければ「登録する」ボタンを押してください。</p>
     </div>
-    <div class="">
+    <div class="menu_content">
         <form action="" method="POST">
-            <div>
-                <p>店舗名</p>
-                <p><?php echo $storename ?></p>
+            <div class="form_content">
+                <p>店舗名：<?php echo $storename ?></p>
                 <input type="hidden" name="storename" value="<?php echo $storename ?>"> 
             </div>
-            <div>
-                <p>住所</p>
-                <p><?php echo $storeaddress ?></p>
+            <div class="form_content">
+                <p>住所：<?php echo $storeaddress ?></p>
                 <input type="hidden" name="storeaddress" value="<?php echo $storeaddress ?>"> 
             </div>
-            <div>
-                <p>電話番号</p>
-                <p><?php echo $storetel ?></p>
+            <div class="form_content">
+                <p>電話番号：<?php echo $storetel ?></p>
                 <input type="hidden" name="storetel" value="<?php echo $storetel ?>"> 
             </div>
-            <div>
-                <p>メールアドレス</p>
-                <p><?php echo $storeemail ?></p>
+            <div class="form_content">
+                <p>メールアドレス：<?php echo $storeemail ?></p>
                 <input type="hidden" name="storeemail" value="<?php echo $storeemail ?>"> 
             </div>
-            <div>
-                <p>メニュー</p>
-
-                <p>品名</p>
-                <p><?php 
-                foreach($menunames as $menuname){
-                    echo $menuname;
-                } ?></p>
-                <input type="hidden" name="menuname1" value="<?php echo $menuname1 ?>">
-                <input type="hidden" name="menuname2" value="<?php echo $menuname2 ?>">
-                <input type="hidden" name="menuname3" value="<?php echo $menuname3 ?>">
-                <input type="hidden" name="menuname4" value="<?php echo $menuname4 ?>">
-                <input type="hidden" name="menuname5" value="<?php echo $menuname5 ?>">
-                <input type="hidden" name="menuname6" value="<?php echo $menuname6 ?>">
-                <input type="hidden" name="menuname7" value="<?php echo $menuname7 ?>">
-                <input type="hidden" name="menuname8" value="<?php echo $menuname8 ?>">
-                <input type="hidden" name="menuname9" value="<?php echo $menuname9 ?>">
-                <input type="hidden" name="menuname10" value="<?php echo $menuname10 ?>">
-
-                <p>価格</p>
-                <p><?php 
-                foreach($menuprices as $menuprice){
-                    echo $menuprice;
-                }
-                ?></p>
-                <input type="hidden" name="menuprice1" value="<?php echo $menuprice1 ?>"> 
-                <input type="hidden" name="menuprice2" value="<?php echo $menuprice2 ?>"> 
-                <input type="hidden" name="menuprice3" value="<?php echo $menuprice3 ?>"> 
-                <input type="hidden" name="menuprice4" value="<?php echo $menuprice4 ?>"> 
-                <input type="hidden" name="menuprice5" value="<?php echo $menuprice5 ?>"> 
-                <input type="hidden" name="menuprice6" value="<?php echo $menuprice6 ?>"> 
-                <input type="hidden" name="menuprice7" value="<?php echo $menuprice7 ?>"> 
-                <input type="hidden" name="menuprice8" value="<?php echo $menuprice8 ?>"> 
-                <input type="hidden" name="menuprice9" value="<?php echo $menuprice9 ?>"> 
-                <input type="hidden" name="menuprice10" value="<?php echo $menuprice10 ?>"> 
-
+            <div class="form_content">
+                <p>営業時間：<?php echo $opentime ?></p>
+                <input type="hidden" name="opentime" value="<?php echo $opentime ?>"> 
             </div>
-            <div>
+            <div class="form_content">
+                <p>定休日：<?php echo $closed ?></p>
+                <input type="hidden" name="closed" value="<?php echo $closed ?>"> 
+            </div>
+            <div class="form_content_image">
+                <p>画像：<?php print "<img src=\"data:image/jpeg;base64,${base64}\">"; ?></p>
+                <input type="hidden" name="image" value="<?php echo $_FILES["image"]["tmp_name"] ?>"> 
+            </div>
+            <div class="form_content_menu">
+                <div class="title_menus">
+                        <p>メニュー</p>
+                </div>
+                <div class="form_content_menus">
+                    <div class="form_content_menu1">
+                            <div class="form_content_menu_title">
+                                <p>メニュー名</p>
+                            </div>
+                            <div class="form_content_menu_menuname">
+                                <p class="form_content_menu_menuname_p"><?php 
+                                foreach($menunames as $menuname){
+                                    echo $menuname."<br>";
+                                } ?></p>
+                                <input type="hidden" name="menuname1" value="<?php echo $menuname1 ?>">
+                                <input type="hidden" name="menuname2" value="<?php echo $menuname2 ?>">
+                                <input type="hidden" name="menuname3" value="<?php echo $menuname3 ?>">
+                                <input type="hidden" name="menuname4" value="<?php echo $menuname4 ?>">
+                                <input type="hidden" name="menuname5" value="<?php echo $menuname5 ?>">
+                                <input type="hidden" name="menuname6" value="<?php echo $menuname6 ?>">
+                                <input type="hidden" name="menuname7" value="<?php echo $menuname7 ?>">
+                                <input type="hidden" name="menuname8" value="<?php echo $menuname8 ?>">
+                                <input type="hidden" name="menuname9" value="<?php echo $menuname9 ?>">
+                                <input type="hidden" name="menuname10" value="<?php echo $menuname10 ?>">
+                            </div>
+                    </div>
+                    <div class="form_content_menu2">
+                            <div class="form_content_menu_title">
+                                <p>価格(円)</p>
+                            </div>
+                            <div class="form_content_menu_price">
+                                <p><?php 
+                                foreach($menuprices as $menuprice){
+                                    echo $menuprice."<br>";
+                                }
+                                ?></p>
+                                <input type="hidden" name="menuprice1" value="<?php echo $menuprice1 ?>"> 
+                                <input type="hidden" name="menuprice2" value="<?php echo $menuprice2 ?>"> 
+                                <input type="hidden" name="menuprice3" value="<?php echo $menuprice3 ?>"> 
+                                <input type="hidden" name="menuprice4" value="<?php echo $menuprice4 ?>"> 
+                                <input type="hidden" name="menuprice5" value="<?php echo $menuprice5 ?>"> 
+                                <input type="hidden" name="menuprice6" value="<?php echo $menuprice6 ?>"> 
+                                <input type="hidden" name="menuprice7" value="<?php echo $menuprice7 ?>"> 
+                                <input type="hidden" name="menuprice8" value="<?php echo $menuprice8 ?>"> 
+                                <input type="hidden" name="menuprice9" value="<?php echo $menuprice9 ?>"> 
+                                <input type="hidden" name="menuprice10" value="<?php echo $menuprice10 ?>">
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submit_">
                 <input type="submit" name="submit_" value="登録する">
             </div>
         </form>

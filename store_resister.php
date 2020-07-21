@@ -4,6 +4,7 @@
     <title>店舗情報登録</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="store_resister.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
 
 </head>
@@ -11,7 +12,7 @@
     <div class="header">
         <div class="header_wrap">
             <div class="header_logo">
-                <a class="header_logoBtn" href="/">Takeout Kitchen</a>
+                <a class="header_logoBtn" href="front_page.php">Takeout Kitchen</a>
             </div>
             <div class="header_menberBtn">
                 <div class="header_menberBtnItem">
@@ -28,7 +29,7 @@
             <h1>店舗情報入力</h1>
         </div>
         <div class="panel_body">
-            <form action="store_resisterConf.php" method="POST">
+            <form class="panel_body_form" action="store_resisterConf.php" method="POST" enctype="multipart/form-data">
                 <div class="form_content">
                     <p>店名</p>
                     <input class="form_input" type="text" name="storename">
@@ -37,18 +38,30 @@
                     <p>住所</p>
                     <input class="form_input" type="text" name="storeaddress">
                 </div>
-                <div class="form_content">
+                <div class="form_content half">
                     <p>電話番号</p>
                     <input class="form_input" type="tel" name="storetel">
                 </div>
-                <div>
-                    <p>メールアドレス　※店舗詳細には公開されません。</p>
+                <div class="form_content half">
+                    <p>メールアドレス</p>
                     <input class="form_input" type="email" name="storeemail">
+                </div>
+                <div class="form_content half">
+                    <p>営業時間</p>
+                    <input class="form_input" type="text" name="opentime">
+                </div>
+                <div class="form_content half">
+                    <p>定休日</p>
+                    <input class="form_input" type="text" name="closed">
+                </div>
+                <div class="form_content half">
+                    <p>画像(1つだけ使用可能です)</p>
+                    <input class="form_input_image" type="file" name="image">
                 </div>
                 <div class="form_content">
                     <div class="form_content_menu">
-                        <div class="menu">
-                            <p>品名</p>
+                        <div class="menu_name">
+                            <p>メニュー名</p>
                             <input class="form_input_menu" type="text" name="menuname1">
                             <input class="form_input_menu" type="text" name="menuname2">
                             <input class="form_input_menu" type="text" name="menuname3">
@@ -60,8 +73,8 @@
                             <input class="form_input_menu" type="text" name="menuname9">
                             <input class="form_input_menu" type="text" name="menuname10">
                         </div>
-                        <div class="menu">
-                            <p>価格</p>
+                        <div class="menu_price">
+                            <p>価格(円)</p>
                             <input class="form_input_price" type="text" name="menuprice1">
                             <input class="form_input_price" type="text" name="menuprice2">
                             <input class="form_input_price" type="text" name="menuprice3">

@@ -1,0 +1,46 @@
+body{
+    background-color: bisque;
+}
+
+.whatis{
+    margin: 0 10%;
+    text-align: center;
+}
+
+
+.whatis h1{
+    color: #ff4500;
+    margin-bottom: 30px;
+}
+
+.whatis p{
+    text-align: start;
+    font-size: 18px;
+}
+
+.howto{
+    margin:0 20%;
+    margin-top: 70px;
+    padding:0 10px;
+    border:solid 1px #ff4500;
+    border-radius: 10px;
+}
+
+.howto h2{
+    text-align: center;
+}
+
+.top_back{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.top_back_link{
+    text-decoration: none;    
+    padding:10px;
+    color:#ff4500;
+    background-color:white;
+    border:solid 1px #ff4500;
+    border-radius: 10px;
+}

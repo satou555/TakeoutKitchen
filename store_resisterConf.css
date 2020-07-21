@@ -1,0 +1,28 @@
+.menu_content{
+    margin-left: 30px;
+}
+
+.form_content_menu{
+    margin-top: 30px;
+}
+
+.form_content_menus{
+    display: flex;
+}
+
+.form_content_menu1{
+    background-color: #dcdcdc;
+    border:solid 1px black;
+    padding:0px 20px;
+}
+
+.form_content_menu2{
+    background-color: #dcdcdc;
+    border:solid 1px black;
+    border-left: none;
+    padding:0px 20px;
+}
+
+.submit_{
+    margin-top: 30px;
+}
