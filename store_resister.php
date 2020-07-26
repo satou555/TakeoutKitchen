@@ -1,3 +1,28 @@
+<?php 
+require_once("common.php");
+
+session_start();
+
+/*データベース接続*/ 
+$dsn="mysql:dbname=".DB_NAME.";host=".DB_HOST.";charset=utf8";
+$pdo= new PDO($dsn,DB_USER,DB_PASS);
+$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
+
+if(isset($_SESSION["id"]) && $_SESSION["time"]+3600 > time()){
+    //ログインしている
+    $_SESSION["time"] = time();
+
+    $users = $pdo -> prepare("SELECT * FROM users WHERE id=?");
+    $users->execute(array($_SESSION["id"]));
+    $user = $users->fetch();
+}else{
+    //ログインしていない
+    header("Location:index_loginTakeoutKitchen.php");
+    exit();
+}
+
+?>
+
 <!doctype html>
 <html>
 <head>
