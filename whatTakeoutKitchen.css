@@ -1,5 +1,5 @@
 body{
-    background-color: bisque;
+    background-color: #FEEABC;
 }
 
 .whatis{
@@ -9,25 +9,35 @@ body{
 
 
 .whatis h1{
-    color: #ff4500;
+    color: #FCAA00;
     margin-bottom: 30px;
 }
 
 .whatis p{
     text-align: start;
     font-size: 18px;
+    color:#767676;
 }
 
 .howto{
     margin:0 20%;
     margin-top: 70px;
     padding:0 10px;
-    border:solid 1px #ff4500;
+    border:solid 1px #FCAA00;
     border-radius: 10px;
 }
 
 .howto h2{
     text-align: center;
+    color:#767676;
+}
+
+.howto h3{
+    color:#767676;
+}
+
+.howto p{
+    color:#767676;
 }
 
 .top_back{
@@ -39,8 +49,8 @@ body{
 .top_back_link{
     text-decoration: none;    
     padding:10px;
-    color:#ff4500;
+    color:#FCAA00;
     background-color:white;
-    border:solid 1px #ff4500;
+    border:solid 1px #FCAA00;
     border-radius: 10px;
 }

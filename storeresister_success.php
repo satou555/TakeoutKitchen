@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
 <head>
-    <title>会員登録完了</title>
+    <title>登録完了</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="resister_success.css">
+    <link rel="stylesheet" href="storeresister_success.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
-
 </head>
 <body>
     <div class="header">
@@ -25,11 +24,10 @@
         </div>
     </div>
     <div class="main_content">
-        <p>会員登録が完了しました</p>
+        <p>登録が完了しました</p>
     </div>
     <div class="top_back">
         <a class="top_back_link" href="front_page.php">トップへ戻る</a>
     </div>
-    
 </body>
 </html>

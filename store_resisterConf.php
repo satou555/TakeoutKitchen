@@ -10,10 +10,6 @@ $storeemail=$_POST["storeemail"];
 $opentime=$_POST["opentime"];
 $closed=$_POST["closed"];
 
-$temsave='/images';
-$tmpimage=uniqid().'csv';
-move_uploaded_file($_FILES["image"]["tmp_name"],$temsave);
-
 $img = file_get_contents($_FILES["image"]["tmp_name"]);
 $base64 = base64_encode($img);
 
@@ -45,7 +41,6 @@ $menuname6,$menuname7,$menuname8,$menuname9,$menuname10);
 $menuprices=array($menuprice1,$menuprice2,$menuprice3,$menuprice4,$menuprice5,
 $menuprice6,$menuprice7,$menuprice8,$menuprice9,$menuprice10); 
 
-
 /*登録するボタンを押したら情報をデータベースに登録する*/
 if(isset($_POST["submit_"])){
     /*データベース接続*/ 
@@ -54,14 +49,18 @@ if(isset($_POST["submit_"])){
     $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_SILENT);
        
     /*データ挿入*/
-    $stmt=$pdo->prepare("INSERT INTO kitchens (storename,addres,tel,mail,opentime,closed) VALUE(?,?,?,?,?,?)");
+    $stmt=$pdo->prepare("INSERT INTO kitchens (storename,addres,tel,mail,opentime,closed,image) VALUE(?,?,?,?,?,?,?)");
     $stmt->bindValue(1,$_POST["storename"]);
     $stmt->bindValue(2,$_POST["storeaddress"]);
     $stmt->bindValue(3,$_POST["storetel"]);
     $stmt->bindValue(4,$_POST["storeemail"]);
     $stmt->bindValue(5,$_POST["opentime"]);
     $stmt->bindValue(6,$_POST["closed"]);
+    $stmt->bindValue(7,'images/'.$_POST["imagename"]);
     $res = $stmt->execute();
+
+    $temsave='/images/';
+    move_uploaded_file($_FILES["image"]["tmp_name"],$temsave.$_POST["imagename"]);
 
     /*データベースから店舗情報を取得*/
     $stmt2=$pdo->prepare("SELECT id FROM kitchens WHERE storename='$storename'");
@@ -161,6 +160,7 @@ if(isset($_POST["submit_"])){
             <div class="form_content_image">
                 <p>画像：<?php print "<img src=\"data:image/jpeg;base64,${base64}\">"; ?></p>
                 <input type="hidden" name="image" value="<?php echo $_FILES["image"]["tmp_name"] ?>"> 
+                <input type="hidden" name="imagename" value="<?php echo $_FILES["image"]["name"] ?>"> 
             </div>
             <div class="form_content_menu">
                 <div class="title_menus">

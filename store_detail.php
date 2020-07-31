@@ -43,7 +43,7 @@ session_start();
         }
 
         /*データベースから店舗情報を取得*/
-        $stmt=$pdo->query("SELECT product,price FROM menu WHERE kitchensId IN (SELECT id FROM kitchens)");
+        $stmt=$pdo->query("SELECT product,price FROM menu WHERE kitchensId = '".$_POST["id"]."'");
         $stmt->execute();
         $result=$stmt->fetchAll();
         
@@ -77,16 +77,15 @@ session_start();
                             <?php foreach($result as $loop){ ?>
                                 <tr>
                                     <td class="table_menuname">
-                                        <? echo $loop[product]; ?>
+                                        <?php echo $loop[product]; ?>
                                     </td>
                                     <td>
-                                        <? echo $loop[price]; ?>
+                                        <?php echo $loop[price]; ?>
                                     </td>
                                 </tr>
                             <?php } ?>
                         </table>
-                    </div>
-                    
+                    </div>                  
                 </div>
             </div>
             

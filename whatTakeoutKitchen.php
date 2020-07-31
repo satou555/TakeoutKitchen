@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="whatTakeoutKitchen.css">
+        <title>テイクアウトキッチンについて</title>
     </head>
     <body>
         <div class="main_content">

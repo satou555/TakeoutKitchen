@@ -1,7 +1,8 @@
 <?php
     require_once("common.php");
 
-    session_start();
+    session_start();        
+
 ?>
 
 <!doctype html>
@@ -9,46 +10,58 @@
 <head>
     <meta charset="utf-8">
     <title>Takeout Kitchen</title>
-    <link rel="stylesheet" href="front_page_stylesheet.css">
+    <link rel="stylesheet" href="front_page_stylesheet1.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
 </head>
 <body>
-    <div class="header">
-        <div class="header_wrap">
-            <div class="header_logo">
-                <a class="header_logoBtn" href="/">Takeout Kitchen</a>
-            </div>
-            <div class="header_menberBtn">
-                <div class="header_menberBtnItem">
-                    <a class="header_menberBtnLink" href="index_resisterTakeoutKitchen.php" rel="nofollow">新規登録</a>
+    <div class="wrapper">
+        <div class="header">
+            <div class="header_wrap">
+                <div class="header_logo">
+                    <a class="header_logoBtn" href="front_page.php">Takeout Kitchen</a>
                 </div>
-                <div class="header_menberBtnItem">
-                    <a class="header_menberLoginLink" href="index_loginTakeoutKitchen.php" rel="nofollow">ログイン</a>
+                <div class="header_menberBtn">
+                    <div class="header_menberBtnItem">
+                        <a class="header_menberBtnLink" href="index_resisterTakeoutKitchen.php" rel="nofollow">新規登録</a>
+                    </div>
+                    <div class="header_menberBtnItem">
+                        <a class="header_menberLoginLink" href="index_loginTakeoutKitchen.php" rel="nofollow">ログイン</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="main1">
-        <div class="main1_btnItem">
-            <a class="main1_seachKitchen" href="">店を探す</a>
+        <div class="main_head">
+            <div class="main_head_wrap">
+                <div class="main_side_headContent">
+                </div>
+                <div class="main_headContent">
+                    <div class="main_headContent_items">
+                        <h1 class="main_headItem">お店のメニューを登録して</h1>
+                        <h1 class="main_headItem">簡単にテイクアウトできちゃいます:-)</h1>
+                    </div>
+                    <div class="main_headContent_links">
+                        <a class="main_headLink" href="whatTakeoutKitchen.php">TakeoutKitchenとは？</a>
+                    </div>
+                </div>
+                <div class="main_side_headContent">
+                </div>
+            </div>
         </div>
-        <div class="main1_btnItem">
-            <a class="main1_resisterKitchen" href="">店を登録する</a>
+        <div class="main1">
+            <div class="main1_btnItem">
+                <a class="main1_seachKitchen" href="menu.php">お店を探す</a>
+            </div>
+            <div class="main1_btnItem">
+                <a class="main1_resisterKitchen" href="store_resister.php" rel="nofollow">お店を掲載する</a>
+            </div>
+        </div>
+        <div class="footer">
+            <!--ログアウト-->
+            <div class="logout">
+                <a class="logout_btn" href="logout.php" rel="nofollow">ログアウト</a>
+            </div>
         </div>
     </div>
-    <div class="delete_user">
-        <a href="index_deleteTakeoutKitchen.php">退会する</a>
-    </div>
-    <!--ログインしているならログアウトボタンを表示する-->
-    <div class="logout_user">
-        <?php
-            if(isset($_SESSION["username"])){
-                echo "<a href="."index_logoutTakeoutKitchen.php".">ログアウト</a>";
-            }
-        ?>
-    </div>
-
-
-
 </body>
 </html>

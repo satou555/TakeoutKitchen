@@ -2,57 +2,7 @@ body{
     margin:0;
 }
 
-.header{
-    margin:0 ;
-    background: #ffffff;
-    width: 100%;
-    height: 60px;
-    padding: 0 30px;
-    border-bottom:solid 1px #dcdcdc;
-}
-
-.header_wrap{
-    display:flex;
-    justify-content: start;
-    align-items:center;
-}
-
-.header_logoBtn{
-    box-sizing: border-box;
-    font-size: 25px;
-    color:#ff4500;
-    text-decoration: none;
-    padding:7px 10px;
-    font-family: "Anton",sans-serif;
-}
-
-.header_menberBtn{
-    margin-left:auto;
-    display: flex;
-}
-
-.header_menberBtnItem:first-child{
-    padding-right: 10px;
-}
-
-.header_menberBtnLink{
-    color:#ffffff;
-    background-color: #ff4500;
-    padding:10px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 15px;
-    box-sizing: border-box;
-}
-
-.header_menberLoginLink{
-    color:#ff4500;
-    padding:10px 20px;
-    text-decoration: none;
-    font-size: 15px;
-    box-sizing: border-box;
-}
-
+/*ボディ*/
 .container_bigbox{
     margin-top:30px;
     margin-left: 25%;

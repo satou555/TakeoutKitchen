@@ -54,6 +54,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
 <head>
     <title>会員登録</title>
     <link rel="stylesheet" href="index_resisterTakeoutKitchen_stylesheet.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
 
 </head>
@@ -65,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST"){
             </div>
             <div class="header_menberBtn">
                 <div class="header_menberBtnItem">
-                    <a class="header_menberBtnLink" href="<?php header("Location:".$_SERVER["PHP_SELF"]); ?>" rel="nofollow">新規登録</a>
+                    <a class="header_menberBtnLink" href="index_resisterTakeoutKitchen.php" rel="nofollow">新規登録</a>
                 </div>
                 <div class="header_menberBtnItem">
                     <a class="header_menberLoginLink" href="index_loginTakeoutKitchen.php" rel="nofollow">ログイン</a>

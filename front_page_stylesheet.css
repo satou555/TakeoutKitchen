@@ -2,6 +2,7 @@ body{
     margin:0;
 }
 
+/*header*/
 .header{
     margin:0 ;
     background: #ffffff;
@@ -53,6 +54,27 @@ body{
     box-sizing: border-box;
 }
 
+
+/*main_header*/
+.main_headContent{
+    background-color: #ff8d64;
+}
+
+.main_headItem{
+    color:white;
+
+}
+
+.main_headLink{
+    text-decoration: none;
+    padding:10px;
+    color:white;
+    background-color:#ff4500;
+    border:solid 1px #ff4500;
+    border-radius: 10px;
+}
+
+/*main1*/
 .main1{
     display: flex;
     justify-content: center;

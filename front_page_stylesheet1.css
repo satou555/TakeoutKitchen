@@ -1,0 +1,156 @@
+html,body{
+    height:100%;
+}
+
+body{
+    margin:0;
+}
+
+.wrapper{
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+}
+
+/*main_header*/
+.main_head{
+    display: flex;
+    width: 100%;
+}
+
+.main_head_wrap{
+    display: flex;
+    width: 100%;
+}
+
+.main_headContent{
+    height: 270px;
+    background-color: #FCAA00;
+    text-align: center;
+    padding:40px 0px;
+    margin:0;
+    width:70%;
+    min-width:520px;
+}
+
+.main_side_headContent{
+    width: 15%;
+    height: 350px;
+    background-color: #FCAA00;
+}
+
+.main_headContent_items{
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.main_headContent_links{
+    padding-top: 30px;
+}
+
+.main_headItem{
+    color:white;
+    font-size: 30px;
+    box-sizing: border-box;
+    min-width:190px;
+}
+
+.main_headLink{
+    text-decoration: none;
+    padding:10px;
+    color:#FCAA00;
+    border:solid 1px #FCAA00;
+    background-color:white;
+    border-radius: 10px;
+}
+
+.main_headLink:hover{
+    background-color:#fff5e0;
+}
+
+/*main1*/
+.main1{
+    display: flex;
+    justify-content: center;
+    margin:0;
+    background-color:white;
+    padding-top: 50px;
+    padding-bottom:50px;
+}
+
+.main1_btnItem:first-child{
+    margin-right: 10%;
+}
+
+.main1_btnItem{
+    background-color:#61C359;
+    min-width:300px;
+    border-radius: 10px;
+}
+
+.main1_btnItem:hover{
+    background-color: #62c359a8;
+}
+
+.main1_seachKitchen{
+    display: block;
+    box-sizing: border-box;
+    padding: 35px 10px;
+    height:100%;
+    color:white;
+    font-size:30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.main1_seachKitchen:before{
+    content:"";
+    display:inline-block;
+    width:80px;
+    height:80px;
+    background: url("icon_image/フォークとナイフのお食事アイコン素材.png") no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.main1_resisterKitchen{
+    display: block;
+    box-sizing: border-box;
+    padding: 35px 10px;
+    height:100%;
+    text-align: center;
+    color:white;
+    font-size:28px;
+    text-decoration: none;
+}
+
+.main1_resisterKitchen:before{
+    content:"";
+    display:inline-block;
+    width:80px;
+    height:80px;
+    background: url("icon_image/ホームアイコン.png") no-repeat;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+/*footer*/
+.footer{
+    position: absolute;
+    bottom: 0;
+    background-color:white;
+    width:100%;
+    height:30px;
+    padding:10px 0;
+}
+
+.logout{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.logout_btn{
+    text-decoration: none;
+    color:#767676;
+}
